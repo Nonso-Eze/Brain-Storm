@@ -1,5 +1,7 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, Inject } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { Cache } from 'cache-manager';
+import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import {
   Horizon,
   Keypair,
@@ -23,7 +25,10 @@ export class StellarService {
   private networkPassphrase: string;
   private contractId: string;
 
-  constructor(private configService: ConfigService) {
+  constructor(
+    private configService: ConfigService,
+    @Inject(CACHE_MANAGER) private cacheManager: Cache,
+  ) {
     const isTestnet = process.env.STELLAR_NETWORK !== 'mainnet';
     this.network = isTestnet ? 'testnet' : 'mainnet';
     this.networkPassphrase = isTestnet ? Networks.TESTNET : Networks.PUBLIC;
@@ -39,8 +44,15 @@ export class StellarService {
   }
 
   async getAccountBalance(publicKey: string) {
+    const cacheKey = `stellar:balance:${publicKey}`;
+    const cached = await this.cacheManager.get(cacheKey);
+    if (cached) {
+      return cached;
+    }
     const account = await this.server.loadAccount(publicKey);
-    return account.balances;
+    const balances = account.balances;
+    await this.cacheManager.set(cacheKey, balances, 30);
+    return balances;
   }
 
   private async retryWithBackoff<T>(
