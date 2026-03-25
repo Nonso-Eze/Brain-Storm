@@ -8,14 +8,35 @@ export class User {
   @Column({ unique: true })
   email: string;
 
-  @Column()
+  @Column({ unique: true, nullable: true })
+  username: string;
+
+  @Column({ nullable: true })
   passwordHash: string;
+
+  @Column({ nullable: true })
+  avatar: string;
+
+  @Column({ nullable: true, type: 'text' })
+  bio: string;
+
+  @Column({ nullable: true })
+  googleId: string;
 
   @Column({ nullable: true })
   stellarPublicKey: string;
 
   @Column({ default: 'student' })
   role: string;
+
+  @Column({ default: false })
+  isVerified: boolean;
+
+  @Column({ nullable: true, type: 'varchar' })
+  verificationToken: string | null;
+
+  @Column({ nullable: true, type: 'timestamp' })
+  verificationTokenExpiresAt: Date | null;
 
   @CreateDateColumn()
   createdAt: Date;

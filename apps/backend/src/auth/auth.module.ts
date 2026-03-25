@@ -4,6 +4,7 @@ import { PassportModule } from '@nestjs/passport';
 import { UsersModule } from '../users/users.module';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
+import { GoogleStrategy } from './google.strategy';
 
 @Module({
   imports: [
@@ -14,7 +15,7 @@ import { AuthController } from './auth.controller';
       signOptions: { expiresIn: '7d' },
     }),
   ],
-  providers: [AuthService],
+  providers: [AuthService, GoogleStrategy],
   controllers: [AuthController],
 })
 export class AuthModule {}
