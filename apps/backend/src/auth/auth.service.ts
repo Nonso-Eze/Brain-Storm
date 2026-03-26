@@ -101,7 +101,7 @@ export class AuthService {
     const user = await this.usersService.findByVerificationToken(hash);
 
     if (!user) throw new BadRequestException('Invalid or expired verification token');
-    if (user.verificationTokenExpiresAt < new Date()) {
+    if (user.verificationTokenExpiresAt && user.verificationTokenExpiresAt < new Date()) {
       throw new BadRequestException('Verification token has expired');
     }
 
