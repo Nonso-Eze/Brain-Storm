@@ -27,6 +27,13 @@ export class User {
   role: string;
 
   @Column({ default: false })
+  isBanned: boolean;
+
+  @Column({ default: false })
+  isVerified: boolean;
+
+  @Column({ nullable: true })
+  deletedAt: Date;
   isVerified: boolean;
 
   @Column({ nullable: true, type: 'varchar' })
