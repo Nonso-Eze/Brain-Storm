@@ -51,6 +51,13 @@ export class AuthService {
     if (!user || !(await bcrypt.compare(password, user.passwordHash))) {
       throw new UnauthorizedException('Invalid credentials');
     }
+    
+    // Check if user is banned
+    if (user.isBanned) {
+      throw new UnauthorizedException('Account is banned');
+    }
+    
+    return this.signToken(user.id, user.email);
     if (!user.isVerified) {
       throw new ForbiddenException('Please verify your email before logging in');
     }
