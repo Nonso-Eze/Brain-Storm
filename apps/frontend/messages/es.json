@@ -5,6 +5,8 @@
     "profile": "Perfil",
     "switchLight": "Cambiar a modo claro",
     "switchDark": "Cambiar a modo oscuro",
+    "language": "Idioma",
+    "siteNav": "Navegación del sitio"
     "language": "Idioma"
   },
   "home": {
@@ -16,6 +18,7 @@
   "courses": {
     "title": "Cursos",
     "viewCourse": "Ver Curso →",
+    "viewCourseLabel": "Ver curso: {title}",
     "levels": {
       "Beginner": "Principiante",
       "Intermediate": "Intermedio",
@@ -25,6 +28,7 @@
   "profile": {
     "loading": "Cargando…",
     "joined": "Unido el {date}",
+    "avatarAlt": "Avatar de {name}",
     "editProfile": "Editar Perfil",
     "username": "Nombre de usuario",
     "bio": "Biografía",
@@ -36,6 +40,7 @@
   "wallet": {
     "title": "Cartera Stellar",
     "linkedKey": "Clave pública vinculada",
+    "publicKeyLabel": "Clave pública Stellar: {key}",
     "bstBalance": "Saldo BST: {balance} BST",
     "unlinkWallet": "Desvincular Cartera",
     "description": "Vincula tu cartera Freighter para recibir credenciales y tokens BST.",

@@ -5,6 +5,8 @@
     "profile": "Profile",
     "switchLight": "Switch to light mode",
     "switchDark": "Switch to dark mode",
+    "language": "Language",
+    "siteNav": "Site navigation"
     "language": "Language"
   },
   "home": {
@@ -16,6 +18,7 @@
   "courses": {
     "title": "Courses",
     "viewCourse": "View Course →",
+    "viewCourseLabel": "View course: {title}",
     "levels": {
       "Beginner": "Beginner",
       "Intermediate": "Intermediate",
@@ -25,6 +28,7 @@
   "profile": {
     "loading": "Loading…",
     "joined": "Joined {date}",
+    "avatarAlt": "{name}'s avatar",
     "editProfile": "Edit Profile",
     "username": "Username",
     "bio": "Bio",
@@ -36,6 +40,7 @@
   "wallet": {
     "title": "Stellar Wallet",
     "linkedKey": "Linked public key",
+    "publicKeyLabel": "Stellar public key: {key}",
     "bstBalance": "BST Balance: {balance} BST",
     "unlinkWallet": "Unlink Wallet",
     "description": "Link your Freighter wallet to receive credentials and BST tokens.",

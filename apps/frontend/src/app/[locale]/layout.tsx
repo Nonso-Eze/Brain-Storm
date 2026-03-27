@@ -33,6 +33,14 @@ export default async function LocaleLayout({
       <body className="bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors">
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider>
+            {/* Skip-to-content — first focusable element on every page */}
+            <a href="#main-content" className="skip-link">
+              Skip to main content
+            </a>
+            <Navbar />
+            <div id="main-content" tabIndex={-1}>
+              {children}
+            </div>
             <Navbar />
             {children}
           </ThemeProvider>
