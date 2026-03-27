@@ -13,7 +13,26 @@ pub struct ProgressRecord {
 #[contracttype]
 pub enum DataKey {
     Progress(Address, Symbol),
+    Locked, // reentrancy guard
 }
+
+// ── Reentrancy guard ─────────────────────────────────────────────────────────
+
+fn acquire_lock(env: &Env) {
+    let locked: bool = env
+        .storage()
+        .instance()
+        .get(&DataKey::Locked)
+        .unwrap_or(false);
+    assert!(!locked, "reentrant call");
+    env.storage().instance().set(&DataKey::Locked, &true);
+}
+
+fn release_lock(env: &Env) {
+    env.storage().instance().set(&DataKey::Locked, &false);
+}
+
+// ── Contract ─────────────────────────────────────────────────────────────────
 
 #[contract]
 pub struct AnalyticsContract;
@@ -27,6 +46,8 @@ impl AnalyticsContract {
         course_id: Symbol,
         progress_pct: u32,
     ) {
+        acquire_lock(&env);
+
         student.require_auth();
         assert!(progress_pct <= 100, "Progress must be 0-100");
 
@@ -41,6 +62,8 @@ impl AnalyticsContract {
         env.storage()
             .instance()
             .set(&DataKey::Progress(student, course_id), &record);
+
+        release_lock(&env);
     }
 
     /// Get a student's progress for a course
@@ -50,3 +73,5 @@ impl AnalyticsContract {
             .get(&DataKey::Progress(student, course_id))
     }
 }
+
+mod tests;
