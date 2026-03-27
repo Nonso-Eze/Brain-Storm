@@ -22,6 +22,14 @@ export default function CoursesPage() {
           >
             <h2 className="text-xl font-semibold text-gray-900 dark:text-white">{course.title}</h2>
             <p className="text-gray-700 dark:text-gray-400 mt-1">
+      <div className="grid gap-4">
+        {courses.map((course) => (
+          <div
+            key={course.id}
+            className="border border-gray-200 dark:border-gray-700 rounded-lg p-6 bg-white dark:bg-gray-900 hover:shadow-md dark:hover:shadow-gray-800 transition-shadow"
+          >
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">{course.title}</h2>
+            <p className="text-gray-500 dark:text-gray-400 mt-1">
               {t(`levels.${course.level}`)} · {course.duration}
             </p>
             <Link
@@ -34,6 +42,13 @@ export default function CoursesPage() {
           </li>
         ))}
       </ul>
+              className="mt-3 inline-block text-blue-600 dark:text-blue-400 hover:underline"
+            >
+              {t('viewCourse')}
+            </Link>
+          </div>
+        ))}
+      </div>
     </main>
   );
 }

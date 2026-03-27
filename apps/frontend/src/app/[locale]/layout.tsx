@@ -41,6 +41,8 @@ export default async function LocaleLayout({
             <div id="main-content" tabIndex={-1}>
               {children}
             </div>
+            <Navbar />
+            {children}
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

@@ -30,6 +30,10 @@ export function ThemeToggle() {
       {isDark ? (
         <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
+      aria-label={isDark ? t('switchLight') : t('switchDark')}
+      className="w-9 h-9 flex items-center justify-center rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+    >
+      {isDark ? (
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
       className="w-9 h-9 flex items-center justify-center rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
     >
