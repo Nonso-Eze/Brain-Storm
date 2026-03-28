@@ -68,6 +68,9 @@ jobs:
       - name: cargo test
         run: cargo test
 
+      - name: cargo test with fuzz (60s timeout)
+        run: timeout 60 cargo test --lib fuzz || true
+
       - name: cargo fmt check
         run: cargo fmt --check
 
