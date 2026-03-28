@@ -204,7 +204,7 @@ impl AnalyticsContract {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use soroban_sdk::testutils::{Address as _, Ledger, LedgerInfo};
+    use soroban_sdk::testutils::{Address as _, Events, Ledger, LedgerInfo};
     use soroban_sdk::{FromVal, Symbol};
 
     fn setup() -> (soroban_sdk::Env, AnalyticsContractClient<'static>, Address, Address) {

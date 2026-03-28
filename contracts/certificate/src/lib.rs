@@ -34,7 +34,6 @@ pub struct CertificateRecord {
 // =============================================================================
 
 const MINT: Symbol = symbol_short!("mint");
-const TRANSFER: Symbol = symbol_short!("transfer");
 
 // =============================================================================
 // Contract
